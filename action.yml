@@ -1,0 +1,13 @@
+name: 'demo'
+description: 'Luciano's GitHub Action demo'
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  greeting:
+    description: 'The greeting message'
+runs:
+  using: 'node12'
+  main: 'index.js'
