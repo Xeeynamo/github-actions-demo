@@ -20,8 +20,8 @@ try {
     core.info("I am logging from core.info")
     core.warning("I am logging from core.warning")
 
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`Payload: ${payload}`)
+    const context = JSON.stringify(github.context, undefined, 2)
+    console.log(`Context: ${context}`)
 } catch (error) {
     core.setFailed(`Failed for the following reason: ${error.message}`)
 }

@@ -9,20 +9,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
-function getGreeting(whoToGreet) {
-    core.debug("I am now in getGreeting function");
-    return `Hello ${whoToGreet}`;
-}
+const greetings = __importStar(require("./greetings"));
 try {
     const nameToGreet = core.getInput("who-to-greet");
     core.startGroup('getGreeting group...');
-    const greeting = getGreeting(nameToGreet);
+    const greeting = greetings.getGreeting(nameToGreet);
     core.endGroup();
     core.exportVariable('CI', "true");
     console.log(greeting);
     core.setOutput('greeting', greeting);
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
-    console.log(`Payload: ${payload}`);
+    console.log("I am logging from console");
+    console.warn("I am warning from console");
+    core.debug("I am logging from core.debug");
+    core.info("I am logging from core.info");
+    core.warning("I am logging from core.warning");
+    const context = JSON.stringify(github.context, undefined, 2);
+    console.log(`Context: ${context}`);
 }
 catch (error) {
     core.setFailed(`Failed for the following reason: ${error.message}`);

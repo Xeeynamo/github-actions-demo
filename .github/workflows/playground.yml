@@ -1,0 +1,19 @@
+name: Playground
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  playground:
+    name: Playground
+    runs-on: ubuntu-latest
+    steps:
+    - name: sample
+      id: sample
+      uses: xeeynamo/github-actions-demo@master
+      with:
+        who-to-greet: 'Luciano'
+    - name: Print output result
+      run: echo "${{ steps.sample.outputs.greeting }}"
